@@ -10,6 +10,7 @@ Group:		Networking/News
 URL:		https://quiterss.org/
 Source0:	https://quiterss.org/files/%{version}/%{oname}-%{version}-src.tar.gz
 
+BuildRequires:  qt5-linguist-tools	
 BuildRequires:  pkgconfig(Qt5Gui)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Network)
