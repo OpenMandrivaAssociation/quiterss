@@ -20,6 +20,7 @@ BuildRequires:  pkgconfig(Qt5Sql)
 BuildRequires:  pkgconfig(Qt5Multimedia)
 BuildRequires:  pkgconfig(Qt5WebKitWidgets)
 BuildRequires:  pkgconfig(Qt5Widgets)
+BuildRequires:  pkgconfig(Qt5Test)
 BuildRequires:  qtsingleapplication-qt5-devel
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  qt5-qttools
