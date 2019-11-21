@@ -1,38 +1,28 @@
 %define	oname	QuiteRSS
 %define lname %(echo %oname | tr [:upper:] [:lower:])
 
-%bcond_with qt5
-
 Summary:	RSS/Atom feed reader written on Qt
 Name:		%{lname}
-Version:	0.18.5
-Release:	0
+Version:	0.19.1
+Release:	1
 License:	GPLv3+
 Group:		Networking/News
 URL:		https://quiterss.org/
 Source0:	https://quiterss.org/files/%{version}/%{oname}-%{version}-src.tar.gz
 
-BuildRequires:	desktop-file-utils
-%if %{with qt5}
-BuildRequires:	pkgconfig(Qt5Multimedia)
-BuildRequires:	pkgconfig(Qt5Network)
-BuildRequires:	pkgconfig(Qt5Printsupport)
-BuildRequires:	pkgconfig(Qt5WebKitWidgets)
-BuildRequires:	pkgconfig(Qt5Widgets)
-BuildRequires:	pkgconfig(Qt5Xml)
-BuildRequires:	pkgconfig(Qt5Sql)
-BuildRequires:	qt5singleapplication-devel # FIXME: missing
-%else
-BuildRequires:	pkgconfig(QtCore)
-BuildRequires:	pkgconfig(QtGui)
-BuildRequires:	pkgconfig(QtNetwork)
-BuildRequires:	pkgconfig(QtWebKit)
-BuildRequires:	pkgconfig(QtXml)
-BuildRequires:	pkgconfig(QtSql)
-BuildRequires:	qtsingleapplication-devel
-%endif
-BuildRequires:	pkgconfig(phonon)
-BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:  pkgconfig(Qt5Gui)
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Network)
+BuildRequires:  pkgconfig(Qt5WebKit)
+BuildRequires:  pkgconfig(Qt5Xml)
+BuildRequires:  pkgconfig(Qt5Sql)
+BuildRequires:  pkgconfig(Qt5Multimedia)
+BuildRequires:  pkgconfig(Qt5WebKitWidgets)
+BuildRequires:  pkgconfig(Qt5Widgets)
+BuildRequires:  qtsingleapplication-qt5-devel
+BuildRequires:  pkgconfig(sqlite3)
+BuildRequires:  qt5-qttools
+Requires:       qt5-database-plugin-sqlite3
 
 %description
 QuiteRSS is RSS/Atom feed reader written on Qt.
@@ -50,27 +40,24 @@ QuiteRSS is RSS/Atom feed reader written on Qt.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -c %{name}-%{version}
-
-# remove bundled
-rm -rf 3rdparty/qtsingleapplication
-rm -rf 3rdparty/sqlite
+%setup -q -c -n %{aname}-%{version}-src
 
 %build
-%setup_compile_flags
-%if %{with qt5}
-%qmake_qt5  PREFIX=%{_prefix} SYSTEMQTSA=true
-%else
-%qmake_qt4  PREFIX=%{_prefix} SYSTEMQTSA=true
-%endif
-%make
+%qmake_qt5 CONFIG+=release PREFIX=%{_prefix} SYSTEMQTSA=1 %{aname}.pro
+%make_build
 
 %install
 %make_install INSTALL_ROOT=%{buildroot}
 
-# locales
-%find_lang %{name} --with-qt
+%find_lang %{name} --with-qt --without-mo
 
-%check
-desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
+%files -f %{name}.lang
+%doc AUTHORS CHANGELOG README.md
+%{_bindir}/%{name}
+%dir %{_datadir}/%{name}/
+%{_datadir}/%{name}/sound/
+%{_datadir}/%{name}/style/
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.png
 
