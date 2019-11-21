@@ -23,6 +23,7 @@ BuildRequires:  pkgconfig(Qt5Widgets)
 BuildRequires:  qtsingleapplication-qt5-devel
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  qt5-qttools
+BuildRequires:  qt5-qtbase-devel
 Requires:       qt5-database-plugin-sqlite3
 
 %description
