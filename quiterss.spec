@@ -9,6 +9,7 @@ License:	GPLv3+
 Group:		Networking/News
 URL:		https://quiterss.org/
 Source0:	https://quiterss.org/files/%{version}/%{oname}-%{version}-src.tar.gz
+Patch0:   QuiteRSS-0.19.3-fix-qsignalspy-openmandriva.patch
 
 BuildRequires:  qt5-linguist-tools	
 BuildRequires:  pkgconfig(Qt5Gui)
@@ -44,6 +45,7 @@ QuiteRSS is RSS/Atom feed reader written on Qt.
 
 %prep
 %setup -q -c -n %{oname}-%{version}-src
+%autopatch -p0
 
 %build
 %qmake_qt5 CONFIG+=release PREFIX=%{_prefix} SYSTEMQTSA=1 %{oname}.pro
