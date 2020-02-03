@@ -3,7 +3,7 @@
 
 Summary:	RSS/Atom feed reader written on Qt
 Name:		%{lname}
-Version:	0.19.1
+Version:	0.19.3
 Release:	1
 License:	GPLv3+
 Group:		Networking/News
