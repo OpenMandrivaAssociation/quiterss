@@ -48,6 +48,8 @@ QuiteRSS is RSS/Atom feed reader written on Qt.
 %autopatch -p0
 
 %build
+export CC=gcc
+export CXX=g++
 %qmake_qt5 CONFIG+=release PREFIX=%{_prefix} SYSTEMQTSA=1 %{oname}.pro
 %make_build
 
