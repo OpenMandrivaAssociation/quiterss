@@ -1,0 +1,13 @@
+Index: QuiteRSS.pro
+===================================================================
+--- QuiteRSS.pro
++++ QuiteRSS.pro	2020-02-03 14:51:08.400328041 +0100
+@@ -32,7 +32,7 @@
+ }
+ 
+ isEqual(QT_MAJOR_VERSION, 5) {
+-  QT += widgets webkitwidgets network xml printsupport sql multimedia
++  QT += widgets webkitwidgets network xml printsupport sql multimedia testlib
+   DEFINES += HAVE_QT5
+ } else {
+   QT += core gui network xml webkit sql
