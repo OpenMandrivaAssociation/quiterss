@@ -11,6 +11,7 @@ URL:		https://quiterss.org/
 Source0:	https://quiterss.org/files/%{version}/%{oname}-%{version}-src.tar.gz
 Patch0:   QuiteRSS-0.19.3-fix-qsignalspy-openmandriva.patch
 
+BuildRequires:	make
 BuildRequires:  qt5-linguist-tools	
 BuildRequires:  pkgconfig(Qt5Gui)
 BuildRequires:  pkgconfig(Qt5Core)
